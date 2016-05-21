@@ -27,3 +27,7 @@ You will also need a Tenant Id of your Azure Directory.
 ## Usage
 * Click the 'Deploy to Azure',  provide few details and the website in up and running in minutes.
 * Creates Website, an App service plan, a Storage Account and a scheduled WebJob automatically.
+* ** Please see sure to secure the access to the provisioned website - See link below for more information **
+* [1] - https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-how-to-configure-active-directory-authentication/
+ 
+
