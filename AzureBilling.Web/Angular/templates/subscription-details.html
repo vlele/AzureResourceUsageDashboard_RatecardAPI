@@ -1,0 +1,35 @@
+﻿<div>
+    <div class="row well">
+            <h3>Subscription Detail</h3>
+        <div class="row well"> Please make sure that the OfferId, Currency and Region information is updated correctly. These can be gathered from Azure Subscription pages.
+        <br/>       e.g. <br/> Offer Id = MS-AZR-XXXP
+            <br />    Currency = USD
+            <br />     Region = IN
+        </div>
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Id</th>
+                        <th colspan="2">Name</th>
+                        <th>OfferId</th>
+                        <th>Currency</th>
+                        <th>Region</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in subscriptions">
+                        <td><span  ng-class="{'glyphicon glyphicon-warning-sign  alert-warning': item.OfferId == ''}"></span></td>
+                        <td colspan="2"><span class="muted">{{item.SubscriptionId}}</span></td>
+                        <td colspan="2"><span>{{item.DisplayName}}</span></td>
+                        <td colspan="1"><input ng-model="item.OfferId" ng-class="{ alert-warning: !item.OfferId }" />
+                        <a href="https://account.windowsazure.com/Subscriptions/Statement?subscriptionId={{item.SubscriptionId}}">Link</a></td>
+                        <td colspan="1"><input ng-model="item.Currency" ng-class="{ alert-warning: !item.Currency }" /></td>
+                        <td colspan="1"><input ng-model="item.RegionInfo"  ng-class="{ glyphicon glyphicon-warning-sign  alert-warning: item.RegionInfo }" />
+                            <a href="https://account.windowsazure.com/Profile">Link</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pull-right"><input type="button" value="Submit" ng-click="submitEdit()" /></div>
+        </div>
+</div>
