@@ -79,14 +79,6 @@
         "description": "UserId of the user who has access to billing data"
       }
     },
-    "Subscriptions": {
-      "type": "string",
-      "defaultValue": "[SUBSCRIPTION_DETAILS_JSON]",
-      "minLength": 1,
-      "metadata": {
-        "description": "Details of user subscriptions."
-      }
-    },
     "repoUrl": {
       "type": "string"
     },
@@ -240,8 +232,7 @@
             "TenantID": "[parameters('TenantID')]",
             "UserID": "[parameters('UserID')]",
             "StorageConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1)]",
-            "API-URL": "[concat('https://',parameters('siteName'),'.azurewebsites.net')]",
-            "Subscriptions": "[parameters('Subscriptions')]"
+            "API-URL": "[concat('https://',parameters('siteName'),'.azurewebsites.net')]"
           }
         }
       ]
