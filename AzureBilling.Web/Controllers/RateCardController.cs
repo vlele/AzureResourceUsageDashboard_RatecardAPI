@@ -22,7 +22,7 @@ namespace AzureBilling.Web.Controllers
 
         }
 
-        public ActionResult GetBillingData(string subscriptionId= "ea2939ff-05e6-4818-9a45-6cb7a2902695", string organizationId= "600d2dee-f5ea-4019-b95b-4dfb587455e0", string offerId= "MS-AZR-0063P", string currency="USD", string language="en-US", string regionInfo="IN")
+        public ActionResult GetBillingData(string subscriptionId, string organizationId, string offerId, string currency, string language, string regionInfo)
         {
             try
             {

@@ -21,28 +21,12 @@ namespace AzureUsageDataImport
             try
             {
                 string baseUrl = ConfigurationManager.AppSettings["API-URL"];
-                RefreshSubscriptionDetail(baseUrl);
                 PullUsageAndBillingData(baseUrl);
             }
             catch (Exception exp)
             {
                 Logger.Log("WebJob", "Error", exp.Message, exp.ToString());
                 throw;
-            }
-        }
-
-        private static void RefreshSubscriptionDetail(string baseUrl)
-        {
-            string requestUrl = String.Format("{0}/Subscription/Refresh", baseUrl);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
-
-            // Read Response
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            var jsonString = reader.ReadToEnd();
-            if(response.StatusCode != HttpStatusCode.OK)
-            {
-                Logger.Log("WebJob", "Error", "Subscription Refresh failed!", "");
             }
         }
 
@@ -54,11 +38,11 @@ namespace AzureUsageDataImport
 
             var missingSubscriptionIds = new List<string>();
 
-            // pull subscription data
-            EntityRepo<UserSubscription> subscriptionRepo = new EntityRepo<UserSubscription>();
-            var subscriptionList = subscriptionRepo.Get(USER_SUBSCRIPTION_TABLE_PARTITION_KEY, null, "").ToList();
+            // pull subscription data from appsettings
+            string subscriptionJson = ConfigurationManager.AppSettings["Subscriptions"].ToString();
+            var subscriptionList = JsonConvert.DeserializeObject<UserSubscription>(subscriptionJson);
 
-            foreach (var item in subscriptionList)
+            foreach (var item in subscriptionList.Subscriptions)
             {
                 jobStartTime = DateTime.UtcNow;
                 string subscriptionId = item.SubscriptionId;
@@ -95,7 +79,7 @@ namespace AzureUsageDataImport
             }
 
             // log message for yet to be configured subscriptions
-            if(missingSubscriptionIds.Count > 0)
+            if (missingSubscriptionIds.Count > 0)
             {
                 string message = "USER ACTION REQUIRED FOR Subscription(s): " + string.Join(",", missingSubscriptionIds.ToArray()) + " Visit Dashboard, go to 'My Subscription' and fill up details.";
                 LogWebJobRunInfo(message, jobStartTime, jobEndTime);
