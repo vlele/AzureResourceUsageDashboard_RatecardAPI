@@ -119,6 +119,7 @@
     <None Include="Properties\webjob-publish-settings.json" />
     <None Include="settings.job">
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
