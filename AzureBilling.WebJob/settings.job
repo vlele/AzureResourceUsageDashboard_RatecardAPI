@@ -1,2 +1,2 @@
-﻿<p>
-    { &quot;schedule&quot;: &quot;0 */2 * * * *&quot; }</p>
+
+    { "schedule": "0 */2 * * * *" }
