@@ -117,6 +117,10 @@
     <None Include="Properties\PublishProfiles\billingapiaistest - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\billingapiaistest - Web Deploy.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
+    <None Include="settings.job">
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

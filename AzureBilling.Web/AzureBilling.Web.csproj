@@ -212,9 +212,7 @@
     <Compile Include="Helper\ADTokenCache.cs" />
     <Compile Include="Helper\AzureResourceManagerUtil.cs" />
     <Compile Include="Models\DailyBillInfo.cs" />
-    <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\PerUserTokenCache.cs" />
-    <Compile Include="Models\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

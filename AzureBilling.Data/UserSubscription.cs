@@ -1,23 +1,20 @@
 ﻿using Microsoft.WindowsAzure.Storage.Table;
+using System.Collections.Generic;
 
 namespace AzureBilling.Data
 {
-    public class UserSubscription :TableEntity
+    public class UserSubscription
     {
-        private const string PARTITION_KEY = "UserSubscription";
-        public UserSubscription() { }
-        public UserSubscription(string id,string orgId)
-        {
-            this.RowKey = id;
-            this.PartitionKey = PARTITION_KEY;
-            this.OrganizationId = orgId;
-        }
-        public string SubscriptionId { get { return this.RowKey; } set { this.RowKey = value; } }
+        public List<Subscription> Subscriptions { get; set; }
+    }
+
+    public class Subscription
+    {
+        public string SubscriptionId { get; set; }
 
         public string OrganizationId { get; set; }
 
         public string DisplayName { get; set; }
-
 
         public string OfferId { get; set; }
 
